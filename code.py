@@ -371,6 +371,8 @@ while True:
     TILE_GRID.y = MOON_Y
     GROUP[0] = TILE_GRID
 
+    ## CC Edit: Moving the moon % labels off screen
+
     # Update percent value (5 labels: GROUP[1-4] for outline, [5] for text)
     if PERCENT >= 99.95:
         STRING = '100%'
@@ -380,13 +382,13 @@ while True:
     # Set element 5 first, use its size and position for setting others
     GROUP[5].text = STRING
     GROUP[5].x = 16 - GROUP[5].bounding_box[2] // 2
-    GROUP[5].y = MOON_Y + 16
+    GROUP[5].y = MOON_Y + 16 + 32 #CC Edit
     for _ in range(1, 5):
         GROUP[_].text = GROUP[5].text
-    GROUP[1].x, GROUP[1].y = GROUP[5].x, GROUP[5].y - 1 # Up 1 pixel
-    GROUP[2].x, GROUP[2].y = GROUP[5].x - 1, GROUP[5].y # Left
-    GROUP[3].x, GROUP[3].y = GROUP[5].x + 1, GROUP[5].y # Right
-    GROUP[4].x, GROUP[4].y = GROUP[5].x, GROUP[5].y + 1 # Down
+    GROUP[1].x, GROUP[1].y = GROUP[5].x, GROUP[5].y - 1 + 32 #CC Edit # Up 1 pixel
+    GROUP[2].x, GROUP[2].y = GROUP[5].x - 1, GROUP[5].y + 32 #CC Edit # Left
+    GROUP[3].x, GROUP[3].y = GROUP[5].x + 1, GROUP[5].y + 32 #CC Edit # Right
+    GROUP[4].x, GROUP[4].y = GROUP[5].x, GROUP[5].y + 1 + 32 #CC Edit # Down
 
     # Update next-event time (GROUP[8] and [9])
     # Do this before time because we need uncorrupted NOW value
