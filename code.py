@@ -34,7 +34,7 @@ except ImportError:
 
 # CONFIGURABLE SETTINGS ----------------------------------------------------
 
-TWELVE_HOUR = True # If set, use 12-hour time vs 24-hour (e.g. 3:00 vs 15:00)
+TWELVE_HOUR = False # If set, use 12-hour time vs 24-hour (e.g. 3:00 vs 15:00)
 COUNTDOWN = False  # If set, show time to (vs time of) next rise/set event
 BITPLANES = 6      # Ideally 6, but can set lower if RAM is tight
 
@@ -185,7 +185,7 @@ LARGE_FONT = bitmap_font.load_font('/fonts/helvB12.bdf')
 SMALL_FONT = bitmap_font.load_font('/fonts/helvR10.bdf')
 SYMBOL_FONT = bitmap_font.load_font('/fonts/6x10.bdf')
 LARGE_FONT.load_glyphs('0123456789:')
-SMALL_FONT.load_glyphs('0123456789:/.%')
+SMALL_FONT.load_glyphs('0123456789:/.%abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
 SYMBOL_FONT.load_glyphs('\u21A5\u21A7')
 
 # Display group is set up once, then we just shuffle items around later.
@@ -271,6 +271,8 @@ for DAY in range(2):
 # expire. Thought we might need a PERIOD[2] for certain circumstances but
 # it appears not, that's changed easily enough if needed.
 
+## CC Edit - Added list for getting month in 3-letter format
+TXTMONTH = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 # MAIN LOOP ----------------------------------------------------------------
 
@@ -418,7 +420,8 @@ while True:
     GROUP[6].text = STRING
     GROUP[6].x = CENTER_X - GROUP[6].bounding_box[2] // 2
     GROUP[6].y = TIME_Y
-    STRING = str(NOW.tm_mon) + '/' + str(NOW.tm_mday)
+    STRING = str(NOW.tm_mday) + ' ' + TXTMONTH[NOW.tm_mon - 1]
+    #CC EDIT Replaced iwth above line ##STRING = str(NOW.tm_mon) + ' / ' + str(NOW.tm_mday
     GROUP[7].text = STRING
     GROUP[7].x = CENTER_X - GROUP[7].bounding_box[2] // 2
     GROUP[7].y = TIME_Y + 10
