@@ -363,7 +363,8 @@ while True:
     print()
 
     # Update moon image (GROUP[0])
-    FILENAME = 'moon/moon' + '{0:0>2}'.format(FRAME) + '.bmp'
+    #FILENAME = 'moon/moon' + '{0:0>2}'.format(FRAME) + '.bmp'
+    FILENAME = 'images/BlockP.bmp'
     BITMAP = displayio.OnDiskBitmap(open(FILENAME, 'rb'))
     TILE_GRID = displayio.TileGrid(BITMAP,
                                    pixel_shader=displayio.ColorConverter(),)
